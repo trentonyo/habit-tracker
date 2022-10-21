@@ -1,0 +1,69 @@
+﻿@model Habit_Tracker___Doveloop.Models.ViewModels.HabitViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Habit</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Habit.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Habit.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Labels)
+        </dt>
+        <dd class = "col-sm-10">
+            @{
+                string labelNames = "";
+                foreach (Label label in Model.Labels)
+                    labelNames += label.Name + ", ";
+                if (labelNames.Length == 0) labelNames = "No labels";
+                else labelNames = labelNames.Remove(labelNames.Length - 2, 2);
+                @labelNames;
+            }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Days)
+        </dt>
+        <dd class = "col-sm-10">
+            <div>
+                @{
+                    string dayNames = "";
+                    foreach (Day day in Model.Days)
+                        dayNames += day.Name + ", ";
+                    if (dayNames.Length == 0) dayNames = "No days";
+                    else dayNames = dayNames.Remove(dayNames.Length - 2, 2);
+                    @dayNames;
+                }
+            </div>
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HabitEntries)
+        </dt>
+        <dd class = "col-sm-10">
+            @{
+                if (Model.HabitEntries.Count == 0)
+                {
+                    <div>No Entries</div>
+                } else
+                {
+                    foreach (HabitEntry entry in Model.HabitEntries)
+                    {
+                        <div>@entry.EntryTime</div>
+                    }
+                }
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Habit?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

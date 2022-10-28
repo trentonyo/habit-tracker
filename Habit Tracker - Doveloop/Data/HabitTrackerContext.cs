@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Habit_Tracker___Doveloop.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Habit_Tracker___Doveloop.Data
 {
